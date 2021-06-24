@@ -29,8 +29,8 @@ export const RandomAdvice = () => {
   };
 
   return (
-    <>
-      <div className="random-advice-wrapper">
+    <div>
+      <div className="random-advice-text-wrapper">
         {error ? (
           <p>"{UserMessages.Error}"</p>
         ) : isLoading && !error ? (
@@ -49,6 +49,6 @@ export const RandomAdvice = () => {
           Gimme more advice!
         </button>
       </form>
-    </>
+    </div>
   );
 };
