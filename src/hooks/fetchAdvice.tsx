@@ -1,11 +1,5 @@
 import { useRef, useReducer, useCallback } from "react";
 
-// type UseFetchState = {
-//   isLoading: Boolean;
-//   error: any;
-//   data: any[];
-// };
-
 interface UseFetchState {
   isLoading: boolean;
   error: any;
@@ -17,8 +11,11 @@ type UseFetchAction = {
   payload?: any;
 };
 
+/* 
+  Check cache enables caching result on client side and prevents retrieving same results again.
+  Distinguish only buy URL using it as key.
+*/
 export const useFetchAdvice = (
-  //url: string,
   checkCache: boolean = false
 ): [UseFetchState, (value: string) => void] => {
   const cache: Record<string, any> = useRef({});
@@ -48,8 +45,7 @@ export const useFetchAdvice = (
   const fetchData = useCallback(async (url): Promise<any> => {
     dispatch({ type: "LOADING" });
     if (cache.current[url] && checkCache) {
-      const rawData = cache.current[url];
-      const data = rawData.slips ? rawData.slips : rawData.slip;
+      const data = cache.current[url];
       dispatch({ type: "FETCHED", payload: data });
     } else {
       try {
@@ -64,39 +60,12 @@ export const useFetchAdvice = (
           throw Error("No match for any advice.");
         }
         cache.current[url] = data;
-        //if (cancelRequest) return;
         dispatch({ type: "FETCHED", payload: data });
       } catch (error) {
-        console.log("err", error);
-        //if (cancelRequest) return;
         dispatch({ type: "ERROR", payload: error.message });
       }
     }
   }, []);
-
-  // const fetchData = useCallback(async (url): Promise<any> => {
-  //   dispatch(dataFetchInit());
-  //   const options = {
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json"
-  //     },
-  //     auth: {
-  //       username: `${process.env.REACT_APP_API_AUTH_USER}`,
-  //       password: `${process.env.REACT_APP_API_AUTH_PWD}`
-  //     }
-  //   };
-  //   try {
-  //     const { data } = await get(url, options);
-  //     if (!didCancel) {
-  //       dispatch(dataFetchSuccess(data));
-  //     }
-  //   } catch (error) {
-  //     if (!didCancel) {
-  //       dispatch(dataFetchFailure(error));
-  //     }
-  //   }
-  //}, []);
 
   return [state, fetchData];
 };

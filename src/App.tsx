@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 // Use when api will be migrated
 // import { getRandomAdvice } from "./api/api";
-import { Advice } from "./components/AdvicesTypes";
-import { RandomAdvice } from "./components/RandomAdvice";
-import { SearchAdvice } from "./components/SearchAdvice";
-import { UserMessages } from "./commonTypes/types";
+import { Advice } from "./types/AdvicesTypes";
+import { RandomAdvice } from "./components/RandomAdvice/RandomAdvice";
+import { SearchAdvice } from "./components/SearchAdvice/SearchAdvice";
+import { UserMessages } from "./types/CommonTypes";
 import "./CommonStyles.scss";
 
 /* 

@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { UserMessages } from "../commonTypes/types";
-import { ADVICE_API_URL } from "../api/api";
-import { useFetchAdvice } from "../fetchAdvice";
-import { Loader } from "./Loader/Loader";
-import { Advice } from "./AdvicesTypes";
-import { AdviceItem } from "./AdviceItem/AdviceItem";
+import { UserMessages } from "../../types/CommonTypes";
+import { ADVICE_API_URL } from "../../api/api";
+import { useFetchAdvice } from "../../hooks/fetchAdvice";
+import { Loader } from "../commonComponents/Loader/Loader";
+import { Advice } from "../../types/AdvicesTypes";
+import { AdviceItem } from "../commonComponents/AdviceItem/AdviceItem";
 import "./SearchAdvice.scss";
 
 export const SearchAdvice = () => {
   const [isSearchPerformed, setIsSearchPerformed] = useState<Boolean>(false);
   const [searchTerm, setSearchTerm] = useState<String>("");
-  const [{ isLoading, data, error }, fetchData] = useFetchAdvice();
-  const [searchResult, setSearchResult] = useState<Advice[]>();
+  const [{ isLoading, data, error }, fetchData] = useFetchAdvice(true);
+  const [searchResult, setSearchResult] = useState<Advice[]>([]);
 
   const onSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // TODO Add type for argument.
@@ -45,7 +45,7 @@ export const SearchAdvice = () => {
       <p>{UserMessages.NoMatch}</p>
     ) : (
       <ol className="advices-list">
-        {data.slice(0, 15).map((item: Advice) => (
+        {searchResult.slice(0, 15).map((item: Advice) => (
           <li key={item.id}>
             <AdviceItem advice={item.advice} />
           </li>

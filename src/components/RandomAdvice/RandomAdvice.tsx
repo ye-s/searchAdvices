@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { UserMessages } from "../commonTypes/types";
-import { ADVICE_API_URL } from "../api/api";
+import { UserMessages } from "../../types/CommonTypes";
+import { ADVICE_API_URL } from "../../api/api";
 //import useFetch from "react-fetch-hook";
-import { useFetchAdvice } from "../fetchAdvice";
-import { Loader } from "./Loader/Loader";
-import { AdviceItem } from "./AdviceItem/AdviceItem";
+import { useFetchAdvice } from "../../hooks/fetchAdvice";
+import { Loader } from "../commonComponents/Loader/Loader";
+import { AdviceItem } from "../commonComponents/AdviceItem/AdviceItem";
 import "./RandomAdvice.scss";
 
 export const RandomAdvice = () => {
