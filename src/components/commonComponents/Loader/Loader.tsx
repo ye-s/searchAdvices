@@ -1,11 +1,11 @@
 import React from "react";
 
 interface LoaderProps {
-  height: number | string;
-  width: number | string;
-  color: string;
-  label: string;
-  radius: number;
+  height?: number | string;
+  width?: number | string;
+  color?: string;
+  label?: string;
+  radius?: number;
 }
 
 export const Loader: React.FC<LoaderProps> = ({
@@ -27,6 +27,7 @@ export const Loader: React.FC<LoaderProps> = ({
     enableBackground="new 0 0 100 100"
     xmlSpace="preserve"
     aria-label={label}
+    className="loader"
   >
     <circle
       fill="none"

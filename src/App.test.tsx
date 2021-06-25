@@ -3,8 +3,10 @@ import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import App from "./App";
 
-test("render App component", () => {
-  const { getByText } = render(<App />);
-  const h1Element = getByText("Are you looking for advice?");
-  expect(h1Element).toBeInTheDocument();
+describe("Check application render", () => {
+  test("render App component", () => {
+    const { getByText } = render(<App />);
+    const h1Element = getByText("Are you looking for advice?");
+    expect(h1Element).toBeInTheDocument();
+  });
 });

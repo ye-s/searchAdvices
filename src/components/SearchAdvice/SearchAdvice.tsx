@@ -42,7 +42,7 @@ export const SearchAdvice = () => {
     }
 
     return searchResult && searchResult.length < 1 ? (
-      <p>{UserMessages.NoMatch}</p>
+      <p className="status-message">{UserMessages.NoMatch}</p>
     ) : (
       <ol className="advices-list">
         {searchResult.slice(0, 15).map((item: Advice) => (
@@ -58,14 +58,14 @@ export const SearchAdvice = () => {
     <div className="search-advice-wrapper">
       <form onSubmit={onSearchSubmit} name="searchAdvice">
         <p>Search for more advice:</p>
-        <input type="search" name="term" />
+        <input type="search" name="term" placeholder="Insert search text" />
         <button>Search</button>
       </form>
 
       {/* Check if our fetch hasn't error,if not check for fetch still performing,
         when finish call function showMatchedAdvices() to show proper result. */}
       {error ? (
-        <p>"{UserMessages.Error}"</p>
+        <p className="status-message">"{UserMessages.Error}"</p>
       ) : isLoading && !error ? (
         <Loader />
       ) : (
