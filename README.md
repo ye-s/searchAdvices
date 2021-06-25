@@ -1,3 +1,22 @@
+## What I have done:
+
+1. Improved loading message, add loader spinner instead.
+2. Add custom hook to fetch advices data and process different responses states.
+3. Added different test messages for response status.
+4. Added cache for fetched advices, it's based on search url.
+5. Added basic tests.
+6. Updated app structure, split functionality and views.
+7. Added some Types where needed.
+
+## What else could/should be done:
+
+1. Make basic fetch hook, not advice specific and functional wrapper for advices.
+2. Split components even more, for example add notification message component.
+3. Add styles, use styled-components.
+4. Add more tests, check state changes, check view state for different response.
+5. Use another Loader (that one was just for example).
+6. Add pagination or infinity scroll.
+
 # EclecticIQ UI Engineer Code Challenge
 
 We have developed a small application that is functional but naively written.
